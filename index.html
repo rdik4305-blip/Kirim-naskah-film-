@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineScript - Portal Kirim Naskah Film Indonesia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a; /* slate-900 */
+            color: #f8fafc; /* slate-50 */
+        }
+        
+        /* Kustomisasi input file agar terlihat lebih elegan */
+        input[type=file]::file-selector-button {
+            margin-right: 1rem;
+            border: none;
+            background: #2563eb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+        }
+        input[type=file]::file-selector-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Menyembunyikan scrollbar tapi tetap bisa scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- Efek Latar Belakang Cinematic -->
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-20" 
+         style="background-image: radial-gradient(circle at 50% 0%, #3b82f6 0%, transparent 50%);">
+    </div>
+
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-film text-brand-500 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight text-white">CineScript<span class="text-brand-500">.ID</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#aturan" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Aturan Main</a>
+                        <a href="#form-kirim" class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-lg shadow-brand-500/30">Kirim Naskah</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow z-10 flex flex-col items-center">
+        
+        <header class="w-full max-w-4xl mx-auto px-4 py-16 sm:py-24 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+                Wujudkan Naskahmu Menjadi <br class="hidden sm:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-purple-500">Tayangan Televisi</span>
+            </h1>
+            <p class="mt-4 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto">
+                Kirim skenario / naskah film Anda langsung ke Rumah Produksi ternama di Indonesia. Jika diterima, karya Anda akan diproduksi dan royalty langsung cair ke rekening Anda!
+            </p>
+        </header>
+
+        <section id="aturan" class="w-full max-w-5xl mx-auto px-4 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-red-500/10 text-red-500 rounded-xl flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Dilarang Keras Gunakan AI</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Naskah harus 100% orisinal buatan manusia. Jika terbukti menggunakan AI (ChatGPT, dll) untuk menulis naskah, Tim Rumah Produksi akan <strong class="text-red-400">menolak mentah-mentah</strong> karya Anda tanpa kompromi.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-xl flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Wajib Format PDF</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Untuk menjaga kerapian format standar skenario industri, kami hanya menerima file dalam bentuk <strong class="text-white">.PDF</strong>. Format lain (Word/TXT) tidak bisa diunggah.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Royalti Langsung Cair</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cukup masukkan rekening saat mengirim. Tunggu proses kurasi maksimal <strong class="text-white">1 Bulan</strong>. Jika tembus, uang cair & film Anda tayang di televisi / bioskop!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="form-kirim" class="w-full max-w-4xl mx-auto px-4 mb-24">
+            <div class="bg-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-700 relative overflow-hidden">
+                <!-- Decorative element -->
+                <div class="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-brand-500/20 blur-3xl rounded-full"></div>
+                
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center gap-3">
+                    <i class="fas fa-paper-plane text-brand-500"></i>
+                    Formulir Pengiriman Skenario
+                </h2>
+
+                <form id="submissionForm" onsubmit="handleFormSubmit(event)">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <div class="space-y-6">
+                            <h3 class="text-lg font-semibold text-brand-400 border-b border-slate-700 pb-2">1. Detail Karya</h3>
+                            
+                            <!-- Judul -->
+                            <div>
+                                <label for="judul" class="block text-sm font-medium text-slate-300 mb-2">Judul Naskah Film <span class="text-red-500">*</span></label>
+                                <input type="text" id="judul" required placeholder="Contoh: Senja di Batas Kota" 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                            </div>
+
+                            <!-- Genre -->
+                            <div>
+                                <label for="genre" class="block text-sm font-medium text-slate-300 mb-2">Genre Utama <span class="text-red-500">*</span></label>
+                                <select id="genre" required 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all appearance-none">
+                                    <option value="" disabled selected>-- Pilih Genre --</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Komedi">Komedi</option>
+                                    <option value="Horor">Horor</option>
+                                    <option value="Aksi">Aksi / Action</option>
+                                    <option value="Romantis">Romantis / Romance</option>
+                                    <option value="Thriller">Thriller / Misteri</option>
+                                    <option value="Fiksi Ilmiah">Fiksi Ilmiah / Sci-Fi</option>
+                                    <option value="Religi">Religi</option>
+                                </select>
+                            </div>
+
+                            <!-- Harga -->
+                            <div>
+                                <label for="harga" class="block text-sm font-medium text-slate-300 mb-2">Harga Naskah yang Ditawarkan (Rp) <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <span class="text-slate-500 font-medium">Rp</span>
+                                    </div>
+                                    <input type="number" id="harga" required min="1000000" placeholder="5000000" 
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-12 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Isi dengan angka saja tanpa titik/koma (Min. 1.000.000)</p>
+                            </div>
+
+                            <!-- File Upload -->
+                            <div class="bg-slate-900/50 p-4 rounded-xl border border-dashed border-slate-600">
+                                <label for="fileNaskah" class="block text-sm font-medium text-slate-300 mb-2">Unggah File Naskah <span class="text-red-500">*</span></label>
+                                <input type="file" id="fileNaskah" accept="application/pdf" required
+                                    class="w-full text-slate-400 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-500/10 file:text-brand-400 hover:file:bg-brand-500/20 transition-all cursor-pointer">
+                                <p class="text-xs text-brand-400 mt-2 font-medium"><i class="fas fa-info-circle"></i> Wajib format .PDF</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="text-lg font-semibold text-brand-400 border-b border-slate-700 pb-2">2. Penerima Pembayaran</h3>
+                            
+                            <!-- Nama Bank -->
+                            <div>
+                                <label for="bank" class="block text-sm font-medium text-slate-300 mb-2">Nama Bank <span class="text-red-500">*</span></label>
+                                <select id="bank" required 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all appearance-none">
+                                    <option value="" disabled selected>-- Pilih Bank --</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="Mandiri">Bank Mandiri</option>
+                                    <option value="BNI">BNI</option>
+                                    <option value="BRI">BRI</option>
+                                    <option value="BSI">BSI (Bank Syariah Indonesia)</option>
+                                    <option value="CIMB">CIMB Niaga</option>
+                                    <option value="E-Wallet">Gopay / OVO / Dana</option>
+                                </select>
+                            </div>
+
+                            <!-- No Rekening -->
+                            <div>
+                                <label for="norek" class="block text-sm font-medium text-slate-300 mb-2">Nomor Rekening <span class="text-red-500">*</span></label>
+                                <input type="text" id="norek" required placeholder="Masukkan nomor rekening / E-Wallet" pattern="[0-9]+" title="Hanya masukkan angka"
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                            </div>
+
+                            <!-- Atas Nama -->
+                            <div>
+                                <label for="atasNama" class="block text-sm font-medium text-slate-300 mb-2">Nama Pemilik Rekening <span class="text-red-500">*</span></label>
+                                <input type="text" id="atasNama" required placeholder="Sesuai buku tabungan" 
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+                                <p class="text-xs text-slate-500 mt-1">Uang dari PH akan ditransfer langsung ke rekening ini jika naskah diterima.</p>
+                            </div>
+
+                            <h3 class="text-lg font-semibold text-brand-400 border-b border-slate-700 pb-2 mt-8">3. Tujuan Rumah Produksi</h3>
+                            <p class="text-xs text-slate-400 mb-3">Pilih minimal 1 PH (Boleh pilih lebih dari 1 agar peluang lebih besar)</p>
+                            
+                            <div class="space-y-3 bg-slate-900/50 p-4 rounded-xl border border-slate-700 h-48 overflow-y-auto no-scrollbar">
+                                <label class="flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                                    <input type="checkbox" name="ph" value="MD Pictures" class="w-5 h-5 rounded border-slate-600 text-brand-600 focus:ring-brand-600 bg-slate-800 ph-checkbox">
+                                    <span class="text-slate-300 group-hover:text-white font-medium">MD Pictures</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                                    <input type="checkbox" name="ph" value="Falcon Pictures" class="w-5 h-5 rounded border-slate-600 text-brand-600 focus:ring-brand-600 bg-slate-800 ph-checkbox">
+                                    <span class="text-slate-300 group-hover:text-white font-medium">Falcon Pictures</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                                    <input type="checkbox" name="ph" value="Starvision Plus" class="w-5 h-5 rounded border-slate-600 text-brand-600 focus:ring-brand-600 bg-slate-800 ph-checkbox">
+                                    <span class="text-slate-300 group-hover:text-white font-medium">Starvision Plus</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                                    <input type="checkbox" name="ph" value="Visinema Pictures" class="w-5 h-5 rounded border-slate-600 text-brand-600 focus:ring-brand-600 bg-slate-800 ph-checkbox">
+                                    <span class="text-slate-300 group-hover:text-white font-medium">Visinema Pictures</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                                    <input type="checkbox" name="ph" value="Rapi Films" class="w-5 h-5 rounded border-slate-600 text-brand-600 focus:ring-brand-600 bg-slate-800 ph-checkbox">
+                                    <span class="text-slate-300 group-hover:text-white font-medium">Rapi Films</span>
+                                </label>
+                            </div>
+                            <p id="phError" class="text-red-500 text-xs hidden mt-1"><i class="fas fa-exclamation-circle"></i> Silakan pilih minimal 1 Rumah Produksi.</p>
+
+                        </div>
+                    </div>
+
+                    <div class="mt-10 border-t border-slate-700 pt-8">
+                        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-4 sm:p-6 mb-8">
+                            <label class="flex items-start space-x-4 cursor-pointer">
+                                <div class="flex-shrink-0 mt-1">
+                                    <input type="checkbox" id="antiAiCheck" required class="w-6 h-6 rounded border-red-500 text-red-600 focus:ring-red-600 bg-slate-900">
+                                </div>
+                                <div class="text-sm">
+                                    <span class="font-bold text-red-400 block mb-1">PERNYATAAN KEASLIAN KARYA (ANTI-AI)</span>
+                                    <span class="text-slate-300 leading-relaxed">
+                                        Saya dengan sadar menyatakan bahwa naskah ini adalah murni hasil pemikiran dan ketikan saya sendiri <strong>TANPA bantuan sedikitpun dari Artificial Intelligence (AI)</strong> seperti ChatGPT, Claude, Gemini, dll. Jika di kemudian hari tim kurasi Rumah Produksi menemukan bukti penggunaan AI, maka saya bersedia naskah ini <strong>DITOLAK SECARA SEPIHAK</strong> dan masuk daftar hitam (blacklist).
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-brand-600 to-blue-500 hover:from-brand-500 hover:to-blue-400 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-brand-500/30 transition-all transform hover:-translate-y-1 text-lg flex justify-center items-center gap-2">
+                            <i class="fas fa-rocket"></i> Kirim Naskah Sekarang
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="successModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-slate-800 border border-slate-600 rounded-3xl shadow-2xl p-8 max-w-lg w-full mx-4 transform scale-95 transition-transform duration-300" id="modalContent">
+            
+            <div class="text-center">
+                <div class="w-20 h-20 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+                    <i class="fas fa-check"></i>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-white mb-2">Naskah Berhasil Dikirim!</h3>
+                <p class="text-slate-300 mb-6">
+                    Luar biasa! Naskah film Anda dengan judul <strong id="resJudul" class="text-brand-400"></strong> telah berhasil diteruskan ke Rumah Produksi pilihan Anda.
+                </p>
+                
+                <div class="bg-slate-900 rounded-xl p-5 mb-6 text-left border border-slate-700">
+                    <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">Langkah Selanjutnya:</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex gap-3">
+                            <i class="fas fa-clock text-yellow-500 mt-0.5"></i>
+                            <span class="text-slate-300"><strong>Masa Tunggu 1 Bulan.</strong> Tim kurasi akan membaca dan menilai kelayakan naskah Anda untuk diproduksi.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-tv text-purple-400 mt-0.5"></i>
+                            <span class="text-slate-300">Jika diterima, naskah akan masuk tahap pra-produksi dan siap <strong>tayang di Televisi/Bioskop</strong>.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-wallet text-green-400 mt-0.5"></i>
+                            <span class="text-slate-300">Dana sebesar <strong id="resHarga" class="text-white"></strong> akan langsung ditransfer ke rekening <strong id="resBank" class="text-white"></strong> Anda setelah kontrak disetujui.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <button onclick="closeModal()" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                    Tutup & Kembali
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-slate-500 text-sm mt-auto z-10">
+        <p>&copy; 2026 CineScript Indonesia. Platform independen penyalur naskah film.</p>
+        <p class="mt-2 text-xs">Semua Rumah Produksi yang tercantum adalah mitra fiktif dalam simulasi ini.</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk format mata uang Rupiah saat mengetik (opsional tapi bagus untuk UX)
+        const hargaInput = document.getElementById('harga');
+        hargaInput.addEventListener('keyup', function(e) {
+            // Mencegah input selain angka
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Mencegah form reload halaman
+
+            // 1. Validasi File PDF
+            const fileInput = document.getElementById('fileNaskah');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert("Harap unggah file naskah Anda.");
+                return;
+            }
+            
+            if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith('.pdf')) {
+                alert("MAAF! File naskah WAJIB dalam format PDF. Silakan simpan ulang dokumen Anda ke PDF.");
+                fileInput.value = ''; // Reset input
+                return;
+            }
+
+            // 2. Validasi Pilihan Rumah Produksi (Minimal 1)
+            const phCheckboxes = document.querySelectorAll('.ph-checkbox');
+            let phSelected = false;
+            phCheckboxes.forEach(cb => {
+                if (cb.checked) phSelected = true;
+            });
+
+            const phError = document.getElementById('phError');
+            if (!phSelected) {
+                phError.classList.remove('hidden');
+                // Scroll ke bagian PH agar user melihat errornya
+                phError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            } else {
+                phError.classList.add('hidden');
+            }
+
+            // 3. Validasi Checkbox Anti-AI (meskipun sudah required di HTML, pastikan lagi)
+            const aiCheck = document.getElementById('antiAiCheck');
+            if (!aiCheck.checked) {
+                alert("Anda harus menyetujui pernyataan Anti-AI.");
+                return;
+            }
+
+            // Mengambil data untuk ditampilkan di Modal
+            const judul = document.getElementById('judul').value;
+            const harga = document.getElementById('harga').value;
+            const bank = document.getElementById('bank').options[document.getElementById('bank').selectedIndex].text;
+            
+            // Format Harga ke Rupiah
+            const formattedHarga = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(harga);
+
+            // Set text di Modal
+            document.getElementById('resJudul').innerText = judul;
+            document.getElementById('resHarga').innerText = formattedHarga;
+            document.getElementById('resBank').innerText = bank;
+
+            // Animasi Tombol Submit
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim Naskah...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            // Simulasi proses upload dan pengiriman (delay 2 detik)
+            setTimeout(() => {
+                // Tampilkan Modal
+                const modal = document.getElementById('successModal');
+                const modalContent = document.getElementById('modalContent');
+                
+                modal.classList.remove('hidden');
+                // Trigger reflow untuk animasi
+                void modal.offsetWidth; 
+                
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+                
+                // Reset form setelah sukses
+                document.getElementById('submissionForm').reset();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                
+            }, 2000);
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Sesuaikan dengan durasi transisi Tailwind (duration-300)
+        }
+    </script>
+</body>
+</html>
